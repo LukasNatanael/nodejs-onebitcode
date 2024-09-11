@@ -1,10 +1,15 @@
 import { createFile, showFile, updateFile, deleteFile } from './functions.mjs'
 
-console.clear()
-createFile('Initial file content. \nCreated with fs module of Node JS\n')
-showFile()
-console.log("----------------------")
-updateFile("Modified content...")
-showFile()
-console.log("----------------------\n")
-deleteFile()
+async function start() {
+    
+    console.clear()
+    await createFile('Initial file content. \nCreated with fs module of Node JS\n')
+    await showFile()
+    console.log("----------------------")
+    await updateFile("Modified content...")
+    await showFile()
+    console.log("----------------------\n")
+    await deleteFile()
+}
+
+start()
