@@ -1,6 +1,4 @@
-import { error } from 'node:console'
 import fs from 'node:fs'
-import { resolve } from 'node:path'
 
 export function createFile(text) {
   return new Promise( resolve => {
