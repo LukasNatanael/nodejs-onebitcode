@@ -1,27 +1,21 @@
 const { File } = require('./File.js')
-const os   = require('node:os')
-
+const { getSystemInformation } = require('./systemInfo.js')
 
 const filename = 'system.log'
 
 async function start(filename) {
 
-    const arquitetura = os.arch()
-    const plataforma = os.platform()
-    const nucleos = os.cpus()
-    const memoria = os.totalmem()
-    const processadores = os.cpus()
-    const emUso = os.uptime()
+    const systemInfo = getSystemInformation()
 
-    const informations = `Informações do sistema: \n\n` +
-        `Plataforma: ${plataforma} \n` +
-        `Arquitetura: ${arquitetura} \n` +
-        `Quantidade de núcleos: ${nucleos.length} \n` +
-        `Total de memória: ${(memoria / 1024**3).toFixed(2)}GB\n` +
+    const informations = `Detalhes do sistema: \n\n`.toUpperCase() +
+        `Sistema Operacional: ${systemInfo.platform} \n` +
+        `Arquitetura: ${systemInfo.arch} \n` +
+        `Quantidade de núcleos: ${systemInfo.cores} \n` +
+        `Uso de Memória RAM: ${systemInfo.ramUsage.toFixed(2)} GB | ${systemInfo.ramTotal.toFixed(1)} GB (${systemInfo.ramUsagePercent} %)\n` +
         `Informações da CPU: \n` +
-        `   - Modelo: ${processadores[0].model} \n` +
-        `   - Velocidade: ${processadores[0].speed} \n` +
-        `Tempo de uso: ${emUso}`
+        `   - Modelo: ${systemInfo.cpus[0].model} \n` +
+        `   - Velocidade: ${systemInfo.cpus[0].speed} \n` +
+        `Tempo de uso: ${systemInfo.inWork}\n`
 
 
     const file = new File(filename)
@@ -35,5 +29,5 @@ async function start(filename) {
 
 setInterval( () => {
     start(filename)
-    },1000 *2
+    },1000 * 1
 )
