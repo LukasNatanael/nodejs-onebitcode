@@ -15,7 +15,7 @@ class File {
                         console.log(`Error at create ${this.filename}: ${error}`)
                         resolve()
                     }
-                    console.log(`${this.filename} was created with successful!`)
+                    // console.log(`${this.filename} was created with successful!`)
                     resolve()
             })
         })
@@ -24,12 +24,12 @@ class File {
 
     update(content) {
         return new Promise(resolve => {
-            fs.writeFile( this.filename, content, 'utf-8', (error) => {
+            fs.appendFile( this.filename, content, 'utf-8', (error) => {
                 if (error) {
                     console.log(`Error at update ${this.filename}: ${error}`)
                     resolve()
                 }
-                console.log(`${this.filename} was updated with successful!`)
+                // console.log(`${this.filename} was updated with successful!`)
                 resolve()
             })
         })
@@ -43,7 +43,7 @@ class File {
                     console.log(`Error at delete ${this.filename}: ${error}`)
                     resolve()
                 }
-                console.log(`${this.filename} was deleted with successful!`)
+                // console.log(`${this.filename} was deleted with successful!`)
                 resolve()
             })
         })

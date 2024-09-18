@@ -1,4 +1,3 @@
-const path = require('node:path')
 const os   = require('node:os')
 
 const systemPlatformMap = {
