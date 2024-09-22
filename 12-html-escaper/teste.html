@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas finanças</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" type="module" defer></script>
+    <script src="https://kit.fontawesome.com/26a1ab3145.js" crossorigin="anonymous" defer></script>
+</head>
+<body>
+    <main>  
+        <form>
+            <h1>Minhas finanças</h1>
+            <div>
+                <label for="product">Produto</label>
+                <input type="text" id="product">
+                <span id="product-error" class="invisible">Por favor informe o nome do produto</span>
+            </div>
+            
+            <div>
+                <label for="price">Valor R$</label>
+                <input type="text" id="price">
+                <span id="price-error" class="invisible">Por favor informe o valor do produto</span>
+            </div>
+
+            <div>
+                <label for="image">Link imagem</label>
+                <input type="text" id="image">
+                <span id="price-error" class="invisible">Por favor informe o valor do produto</span>
+            </div>
+
+            <span>
+                <label for="paid-out">
+                    <input type="radio" name="situation" id="paid-out" value="Pago" checked>
+                    Pago
+                </label>
+                <label for="pending">
+                    <input type="radio" name="situation" id="pending" value="Em aberto">
+                    Em aberto
+                </label>
+            </span>
+
+            <button>Salvar</button>
+
+        </form>
+        <div id="div-expenses">
+            <h1>Meus gastos</h1>
+            <span id="balance">
+                <span id="debts"></span>
+                Total gasto:
+                <span id="total-debts">
+                    R$ 1.500,00
+                </span>
+                <span id="division">|</span>
+                Em aberto:
+                <span id="open-debts">
+                    R$ 1.500,00
+                </span>
+            </span>
+            <article id="articles">
+
+                <article id="1" class="expenses">
+                    <span class="info">
+                        <input id="product-1" type="text" value="Headset  H3 ANC" disabled class="item-title">
+                        <span class="price-span">
+                            <label for="productPrice-1">R$</label>
+                            <input type="text" value="250,90" id="productPrice-1" disabled>
+                        </span>
+
+                        <span class="situation-article">
+                            <label for="paid-out-1">
+                                <input type="radio" name="situation" id="paid-out-1" value="Pago" checked>
+                                Pago
+                            </label>
+                            <label for="pending-1">
+                                <input type="radio" name="situation" id="pending-1" value="Em aberto">
+                                Em aberto
+                            </label>
+                        </span>
+
+                    </span>
+
+                    <div class="image-div">
+                         <img class="image" src="https://qcybrasil.com/cdn/shop/files/PRETO_01_a004fb0f-e39a-4ea6-9522-e3b87170e421.png?v=1704486194" alt="Headset  H3 ANC">
+                        <span class="icons">
+                            <i class="buttons fa-solid fa-trash-can" onclick="deleteProduct()"></i>
+                            <i class="buttons fa-solid fa-pencil" onclick="editProduct()"></i>
+                            <i class="buttons fa-solid fa-floppy-disk"></i>
+                        </span>
+                    </div>
+                </article>
+                
+            </article>
+        </div>
+    </main>
+
+</body>
+</html>
