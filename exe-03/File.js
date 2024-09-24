@@ -5,9 +5,10 @@ class File {
 
     constructor(filename) {
         this.filename = filename
+        
     }
 
-    create(content) {
+    write(content) {
 
         return new Promise(resolve => {
             fs.writeFile( this.filename, content, 'utf-8', (error) => {
