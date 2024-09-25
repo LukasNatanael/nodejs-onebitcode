@@ -1,4 +1,4 @@
-const { Notes, validateAnswer } = require('./Notes.js')
+const { Notes, validateAnswer, askToUser } = require('./Notes.js')
 
 async function mainMenu() {
     const menu = 
@@ -28,16 +28,17 @@ async function mainMenu() {
             notes.deleteNote()
             break
         case '4':
-            console.log()
+            notes.showNote()
             break
         case '5':
-            notes.listNotes()
+            const notesList = notes.listNotes()
+            console.log(notesList)
             break
         case '6':
             console.log()
             break
-        // default:
-        //     option = validateAnswer('Escolha uma das opções acima: ', menu, 'Por favor, informe uma opção!')
+        default:
+            return false
     }
 }
 
@@ -45,3 +46,4 @@ async function mainMenu() {
 
 
 mainMenu()
+
