@@ -22,7 +22,7 @@ async function mainMenu() {
             notes.newNote()
             break
         case '2':
-            console.log()
+            notes.updateNote()
             break
         case '3':
             notes.deleteNote()
