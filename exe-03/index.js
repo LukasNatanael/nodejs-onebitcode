@@ -1,4 +1,16 @@
-const { Notes, validateAnswer, askToUser } = require('./Notes.js')
+const { Notes, validateAnswer } = require('./Notes.js')
+
+async function backToMenu() {
+    await validateAnswer('\nDeseja voltar ao menu [s|n]: ', 'Por favor, informe uma opção!').then( answer => {
+        if (answer == 's') {
+            mainMenu()
+        }
+        else {
+            process.exit(0)
+        }
+    } )
+
+}
 
 async function mainMenu() {
     const menu = 
@@ -11,34 +23,39 @@ async function mainMenu() {
     '         [ 6 ] Sair do menu\n' +
     '\n=-=-=-=-=-=-=-=-=-=- =-=-=-=-=-=-=-=-=-=\n'
 
+    console.clear()
     console.log( menu )
 
     const notes = new Notes()
 
-    let option = await validateAnswer('Escolha uma das opções acima: ', 'Por favor, informe uma opção!', menu)
+    let option = await validateAnswer('Escolha uma das opções acima: ', 'Opção inválida! Por favor informe uma das opções disponíveis.', menu)
 
     switch (option) {
         case '1':
-            notes.newNote()
+            await notes.newNote()
+            backToMenu()
             break
         case '2':
-            notes.updateNote()
+            await notes.updateNote()
+            backToMenu()
             break
         case '3':
-            notes.deleteNote()
+            await notes.deleteNote()
+            backToMenu()
             break
         case '4':
-            notes.showNote()
+            await notes.showNote()
+            backToMenu()
             break
         case '5':
             const notesList = notes.listNotes()
             console.log(notesList)
+            backToMenu()
             break
         case '6':
-            console.log()
-            break
+            process.exit(0)
         default:
-            return false
+            mainMenu()
     }
 }
 
@@ -46,4 +63,6 @@ async function mainMenu() {
 
 
 mainMenu()
+
+// continueAction()
 
