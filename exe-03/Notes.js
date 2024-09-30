@@ -85,6 +85,9 @@ class Notes {
         await new File(
             path.join(this.notesPath, `${filename}.txt`)
         ).write( content )
+
+        console.log(`${filename} foi criado com sucesso e inserido na pasta de notas!`)
+
     }
 
     async deleteNote() {
@@ -101,7 +104,7 @@ class Notes {
             path.join(this.notesPath, filename)
         ).delete()
 
-        console.log(`${filename} foi deletado com sucesso!`)
+        console.log(`${filename}.txt foi deletado com sucesso!`)
     }
 
 
