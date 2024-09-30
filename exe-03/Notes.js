@@ -82,7 +82,7 @@ class Notes {
 
         filename == '' ? filename = `note_${quantityNotes}` : filename
 
-        new File(
+        await new File(
             path.join(this.notesPath, `${filename}.txt`)
         ).write( content )
     }
@@ -97,9 +97,11 @@ class Notes {
 
         filename = this.validateOption(filename)
         
-        new File(
+        await new File(
             path.join(this.notesPath, filename)
         ).delete()
+
+        console.log(`${filename} foi deletado com sucesso!`)
     }
 
 
@@ -128,7 +130,7 @@ class Notes {
         note = this.validateOption(note)
         
         console.clear()
-        new File(
+        await new File(
             path.join(this.notesPath, note)
         ).show()
 
