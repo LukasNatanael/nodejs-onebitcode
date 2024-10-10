@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de tarefas | B-Productive</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <script defer src="/assets/js/script.js"></script>
+
+</head>
+<body>
+    <%- include('partials/header')  %>
+    <main>
+        <h1>Lista de tarefas</h1>
+        <section id="to-do-list" >
+            <% list.forEach( item => {%>
+                <ul>
+                    <form action="app/delete/<%= item.id %>" method="POST">
+                        <li class="to-do" id="<%= item.id %>" > <%= item.title %> </li>
+                        <button type="submit">Excluir</button>
+                    </form>
+                </ul>
+            <% }) %>
+        </section>
+    </main>
+</body>
+</html>

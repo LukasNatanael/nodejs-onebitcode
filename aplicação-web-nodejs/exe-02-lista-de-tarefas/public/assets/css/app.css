@@ -1,0 +1,56 @@
+:root {
+    --white:        #fdfffc ;
+    --black:        #191923 ;
+    --blue:         #0077b6 ;
+    --dark-blue:    #03679c ;
+    --light-purple: #7e78d2 ;
+    --dark-purple:  #6f58c9 ;
+}
+
+.check {
+    color: var(--blue);
+    text-decoration: line-through;
+}
+
+.to-do {
+    user-select: none;
+    list-style: none;
+
+    width: 100%;
+    padding: .5rem;
+}
+.to-do:hover {
+    cursor: pointer;
+}
+
+main {
+    margin: .2rem 8rem;
+
+}
+
+#to-do-list {
+
+    & form {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid var(--blue);
+        border-radius: .5rem;
+
+        padding-right: 1rem;
+        margin: .5rem 0;
+
+        & button {
+            background-color: var(--dark-purple);
+            color: var(--white);
+            border-radius: .5rem;
+            border: 1px solid transparent;
+            padding: .3rem .5rem;
+
+            &:hover {
+                cursor: pointer;
+                background-color: var(--light-purple);
+            }
+        }
+    }
+}
