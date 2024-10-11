@@ -8,55 +8,70 @@
 }
 
 .check {
-    color: var(--blue);
-    text-decoration: line-through;
-
+    
     background-color: green;
+    border: 1px solid green;
+    
+    & li {
+        text-decoration: line-through;
+    }
+
+    & button {
+        background-color: red;
+        
+        &:hover {
+            background-color: rgb(209, 2, 2);
+        }
+    }
 }
 
 .to-do {
+    display: flex;
+    width: 100%;
     user-select: none;
     list-style: none;
-
-    width: 100%;
     padding: .5rem;
-
-    text-decoration: none;
-    color: var(--white);
     
+    & a {
+        text-decoration: none;
+        color: var(--white);
+        width: 100%;
+        /* padding: .5rem; */
+
+    }
+        
 }
 .to-do:hover {
     cursor: pointer;
 }
 
-main {
+.to-do-list {
     margin: .2rem 8rem;
+
+    
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--blue);
+    border-radius: .5rem;
+
+    padding-right: 1rem;
+    margin: .5rem 0;
 
 }
 
-#to-do-list {
+button {
+    background-color: var(--dark-purple);
+    color: var(--white);
+    border-radius: .5rem;
+    border: 1px solid transparent;
+    padding: .3rem .5rem;
 
-    & form {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border: 1px solid var(--blue);
-        border-radius: .5rem;
-
-        padding-right: 1rem;
-        margin: .5rem 0;
-
-        & button {
-            background-color: var(--dark-purple);
-            color: var(--white);
-            border-radius: .5rem;
-            border: 1px solid transparent;
-            padding: .3rem .5rem;
-
-            &:hover {
-                cursor: pointer;
-                background-color: var(--light-purple);
-            }
-        }
+    &:hover {
+        cursor: pointer;
+        background-color: var(--light-purple);
     }
 }

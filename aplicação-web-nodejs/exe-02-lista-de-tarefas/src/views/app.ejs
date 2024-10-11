@@ -11,18 +11,16 @@
 </head>
 <body>
     <%- include('partials/header')  %>
-    <main>
+    <section class="to-do-list" >
         <h1>Lista de tarefas</h1>
-        <section id="to-do-list" >
-            <ul>
-                <% list.forEach( item => {%>
-                <form action="app/delete/<%= item.id %>" method="POST">
-                    <a class="to-do" href="app/tasks/<%= item.id %>"><%= item.title %></a>
-                    <button type="submit">Excluir</button>
-                </form>
-                <% }) %>
-            </ul>
-        </section>
-    </main>
+        <ul>
+            <% list.forEach( item => {%>
+            <form action="app/delete/<%= item.id %>" method="POST" class="item-list">
+                <li class="to-do"><a href="app/tasks/<%= item.id %>"><%= item.title %></a></li>
+                <button type="submit">Excluir</button>
+            </form>
+            <% }) %>
+        </ul>
+    </section>
 </body>
 </html>
