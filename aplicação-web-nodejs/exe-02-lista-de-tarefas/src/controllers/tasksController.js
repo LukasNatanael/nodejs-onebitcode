@@ -19,7 +19,7 @@ const tasksController = {
         res.redirect(`/app/tasks/${parseInt(taskId) + 1}`)
     },
     newList: (req, res) => {
-        res.send('Hello')
+        res.render('newList')
     }
     
 }
