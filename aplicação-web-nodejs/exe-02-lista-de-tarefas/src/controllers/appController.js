@@ -1,18 +1,7 @@
-const listsModel = require("../models/listsModel")
-
-const appController = {
-
-    index: (req, res) => {
-        const list = listsModel.getAll()
-        res.render('app', { list })
-    },
-    delete: (req, res) => {
-        const id = req.params.id
-        const item = listsModel.delete(id)
-
-        res.redirect('/app')
+class AppController {
+    index(req, res) {
+        res.render('index')
     }
-
 }
 
-module.exports = appController
+module.exports = AppController

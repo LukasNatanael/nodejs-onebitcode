@@ -3,17 +3,16 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@antoniosbarotsis/fake-db": "^0.4.1",
     "ejs": "^3.1.10",
-    "express": "^4.21.1"
-  },
-  "devDependencies": {
+    "express": "^4.21.1",
     "nodemon": "^3.1.7"
   }
 }
