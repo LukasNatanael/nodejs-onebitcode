@@ -1,8 +1,19 @@
-const TasksModel = require("./taskModel")
+class TaskList {
+    constructor( listname ) {
+        this._name = listname
+        this._tasks = []
+    }
 
-class TaskListsModel {
-    constructor( ) {
-        this._lists = [{ id: '6316', listname: 'Tarefas de casa', tasks: new TasksModel()}]
+    get tasks() {
+        return this._tasks
+    }
+
+    getTaskByID(id) {
+        return this._tasks.filter( item => item.id === id )[0]
+    }
+    
+    getTaskByName(name) {
+        return this._tasks.filter( item => item.name === name )[0]
     }
 
     #generateID() {
@@ -10,54 +21,59 @@ class TaskListsModel {
         return id
     }
 
-    get lists() {
-        console.log(this._lists)
+    newTask(task) {
+        // const id = this.#generateID()
+
+        // this._tasks.push({ id: id, name: task, complete: false })
+        // this._tasks.push({ name: task, complete: false })
+
+        this._tasks.push({ 
+            id: task.id,
+            name: task.name,
+            complete: task.complete === true ? true: true || task.complete === undefined ? false : true || task.complete === false ? false : true
+        })
+
+        console.log(`[ ${this._name} ] "${task.name}" foi adicionado a lista \n`)
     }
 
-    newList(listname) {
-        const id = this.#generateID()
-        this._lists.push({ id:id, listname, tasks: new TasksModel() })
-        console.log(`"${listname}" foi adicionada a lista de tarefas com sucesso!`)
+    deleteTask(task) {
+        this._tasks = this._tasks.filter( item => item.name != task )
+
+        console.log(`[ ${this._name} ] "${task}" foi removido da lista \n`)
 
     }
 
-    getListByID(id) {
-        return this._lists.filter( list => list.id === id )
-    }
-
-    getListByName(listname) {
-        return this._lists.filter( list => list.listname === listname )
-    }
-
-    deleteList(id) {
-        this._lists.filter( list => {
-            if (list.id === id) {
-                console.log(`"${list.listname}" foi removido da lista de tarefas com sucesso!`)
+    completTask(task) {
+        this._tasks.find( item => {
+            if (item.name === task) {
+                item.complete = true
             }
-        } )
-        
-        this._lists = this._lists.filter( list => list.id !== id )
+        })
 
-    }
-
-    completeList(id) {
-        this._lists.filter( list => {
-            if (list.id === id) {
-                list.complete = true
-                console.log(`"${list.listname}" está com todas as tarefas concluidas!`)
-            }
-        } )
+        console.log(`[ ${this._name} ] "${task}" foi marcada como finalizada \n`)
 
     }
 }
 
-const list = new TaskListsModel()
+console.clear()
+const toDo = new TaskList('Tarefas de casa')
 
-list.newList('Tarefas do trabalho')
+// toDo.newTask('Varrear a casa')
+// toDo.newTask('Dobrar roupas')
 
-list.lists
-list.completeList('6316')
-list.lists
+// toDo.deleteTask('Varrear a casa')
+// toDo.completTask('Dobrar roupas')
 
-list.deleteList('6316')
-list.lists
+// console.log( toDo.tasks )
+
+// console.log( toDo.getTaskByName('Lavar banheiro') )
+
+const banheiro = { 
+    id: '0109',
+    name: 'Lavar banheiro',
+}
+
+toDo.newTask(banheiro)
+
+console.log( toDo.getTaskByName('Lavar banheiro') )
+
