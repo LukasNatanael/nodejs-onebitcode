@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script type="module" src="js/app.js" defer></script>
 </head>
 <body>
-    <h1>Listas de tarefa</h1>
+
+    <main>
+        <h1>Listas de tarefa</h1>
+        <section>
+            <button id="newToDoList"> + Criar nova lista de tarefas</button>
+        </section>
+        <ul>
+            <% list.forEach(element => {%>
+                <a href="app/list-<%= element.id %>">
+                    <li id="list-<%= element.id %>"><%= element.listname %></li>
+                </a>
+            <%})%>
+        </ul>
+    </main>
+
 </body>
 </html>
