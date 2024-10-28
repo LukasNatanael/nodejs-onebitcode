@@ -1,6 +1,12 @@
+const { ToDoList } = require('../models/ToDoListModel')
+
+const list = new ToDoList()
+list.newList('Tarefas de casa')
+list.newList('Tarefas do trabalho')
 class AppController {
     index(req, res) {
-        res.render('index')
+        const allLists = list.getAllLists()
+        res.render('index', { list: allLists })
     }
 }
 
