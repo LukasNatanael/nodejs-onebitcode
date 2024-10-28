@@ -13,7 +13,8 @@ class TaskList {
     }
     
     getTaskByName(name) {
-        return this._tasks.filter( item => item.name === name )[0]
+        const task = this._tasks.filter( item => item.name === name )[0]
+        return task === undefined ? `[ Tarefa não encontrada ] "${name}" não foi localizada na lista de tarefas.` : task
     }
 
     #generateID() {
@@ -43,37 +44,66 @@ class TaskList {
 
     }
 
-    completTask(task) {
+    completeTask(task) {
         this._tasks.find( item => {
             if (item.name === task) {
                 item.complete = true
             }
         })
 
-        console.log(`[ ${this._name} ] "${task}" foi marcada como finalizada \n`)
+        console.log(`[ TAREFA ] "${task}" foi marcada como finalizada \n`)
 
     }
 }
 
-console.clear()
-const toDo = new TaskList('Tarefas de casa')
+// console.clear()
 
-// toDo.newTask('Varrear a casa')
-// toDo.newTask('Dobrar roupas')
+// const tarefas_de_casa = new TaskList('Tarefas de casa')
 
-// toDo.deleteTask('Varrear a casa')
-// toDo.completTask('Dobrar roupas')
+// const banheiro = { 
+//     id: '0109',
+//     name: 'Lavar banheiro',
+// }
 
-// console.log( toDo.tasks )
+// const quarto = { 
+//     id: '9121',
+//     name: 'limpar o quarto',
+// }
 
-// console.log( toDo.getTaskByName('Lavar banheiro') )
+// tarefas_de_casa.newTask(banheiro)
+// tarefas_de_casa.newTask(quarto)
 
-const banheiro = { 
-    id: '0109',
-    name: 'Lavar banheiro',
-}
+// console.log( tarefas_de_casa.getTaskByName('Lavar banheiro') )
 
-toDo.newTask(banheiro)
+// tarefas_de_casa.completeTask(banheiro.name)
 
-console.log( toDo.getTaskByName('Lavar banheiro') )
+// console.log( tarefas_de_casa.getTaskByName('Lavar banheiro') )
 
+// const tarefas_do_trabalho = new TaskList('Tarefas do trabalho')
+
+// const grafana = {
+//     id: '9812',
+//     name: 'Ver grafana'
+// }
+
+// const atendimentos = {
+//     id: '3412',
+//     name: 'Verificar atendimentos'
+// }
+
+// tarefas_do_trabalho.newTask( grafana )
+// tarefas_do_trabalho.newTask( atendimentos )
+
+// const toDoList = new ToDoList()
+
+// toDoList.newList( tarefas_de_casa, '0109' )
+// toDoList.newList( tarefas_do_trabalho, '9912' )
+
+// console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=-')
+// console.log(toDoList.getListByID('0109'))
+
+// // console.log(toDoList.lists)
+
+// toDoList.completeList('0109')
+
+module.exports = { TaskList }
