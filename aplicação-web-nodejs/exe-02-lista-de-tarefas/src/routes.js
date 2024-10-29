@@ -5,5 +5,6 @@ const routes  = express.Router()
 const appController = new AppController()
 
 routes.get('/', appController.index)
+routes.get('/app/list-:id', appController.list)
 
 module.exports = routes
