@@ -6,10 +6,14 @@
     <title>Lista</title>
 </head>
 <body>
-    <h1><%= name %></h1>
+    <h1><%= list.name %></h1>
     <ul>
-        <% tasks.forEach( item => { %>
-            <li> <%= item.name %> </li>
+        <% list.tasks._tasks.forEach( item => { %>
+            <form action="list-<%= list.id %>/task-<%= item.id %>-complete" method="post" id="task-<%= item.id %>">
+                <button type="submit" id="task-<%= item.id %>">
+                    <li > <%= item.name %> </li>
+                </button>
+            </form>
         <% }) %>
     </ul>
 </body>
