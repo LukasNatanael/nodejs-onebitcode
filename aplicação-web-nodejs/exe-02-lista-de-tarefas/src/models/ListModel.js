@@ -29,7 +29,6 @@ class ToDoList {
 
     getListByID(id) {
         
-        // return this._lists.filter( element => element.id === id )[0]
         return this.getAllLists().filter( element => element.id === id )[0]
     }
 
@@ -38,9 +37,8 @@ class ToDoList {
         listToComplete['complete'] = true
 
         console.log(`[ LISTA ] "${listToComplete._name}" foi marcada como finalizada \n`)
-
-
     }
+    
 }
 
 const toDo = new ToDoList()
