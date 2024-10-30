@@ -4,7 +4,7 @@ class TaskList {
         this._tasks = []
     }
 
-    get tasks() {
+    getAllTasks() {
         return this._tasks
     }
 
@@ -23,16 +23,6 @@ class TaskList {
     }
 
     newTask(task) {
-        // const id = this.#generateID()
-
-        // this._tasks.push({ id: id, name: task, complete: false })
-        // this._tasks.push({ name: task, complete: false })
-
-        // this._tasks.push({ 
-        //     id: task.id,
-        //     name: task.name,
-        //     complete: task.complete === true ? true: true || task.complete === undefined ? false : true || task.complete === false ? false : true
-        // })
         this._tasks.push({ 
             id: this.#generateID(),
             name: task,
@@ -58,6 +48,13 @@ class TaskList {
 
         console.log(`[ TAREFA ] "${task}" foi marcada como finalizada \n`)
 
+    }
+
+    checkCompleteAllTasks() {
+        const completeTasks = this.getAllTasks().filter( task => task.complete === true ).length
+        const allTasks = this.getAllTasks().length
+
+        return completeTasks === allTasks ? 'Todas as tarefas foram concluidas!': `Ainda resta(m) ${allTasks-completeTasks} tarefa(s) a ser(em) concluida(s).`
     }
 }
 
