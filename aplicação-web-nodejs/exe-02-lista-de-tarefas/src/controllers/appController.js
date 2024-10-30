@@ -14,6 +14,8 @@ tarefas_do_trabalho.newTask('Verificar OS')
 toDo.newList(tarefas_de_casa)
 toDo.newList(tarefas_do_trabalho)
 
+
+console.clear()
 class AppController {
     index(req, res) {
         const allLists = toDo.getAllLists()
@@ -24,10 +26,27 @@ class AppController {
         const id = req.params.id
         const currentList = toDo.getListByID(id)
         
-        res.render('list', { name: currentList.name, tasks: currentList.tasks._tasks })
+        // res.render('list', { id: currentList.id, name: currentList.name, tasks: currentList.tasks._tasks })
 
-        // console.log( currentList.tasks._tasks )
+        res.render('list', { list: currentList })
+
+        // console.log( currentList )
+        // console.log( currentList.tasks.checkCompleteAllTasks() )
         
+    }
+
+    taskComplete(req, res) {
+        const { listID, taskID } = req.params
+        
+        const currentList = toDo.getListByID( listID )
+        const tasks = currentList.tasks
+        const taskToComplete = tasks.getTaskByID(taskID)
+        taskToComplete.complete = true
+
+        // console.log(taskToComplete)
+        console.log( tasks.checkCompleteAllTasks() )
+        
+        res.redirect(`/app/list-${listID}`)
     }
 }
 
