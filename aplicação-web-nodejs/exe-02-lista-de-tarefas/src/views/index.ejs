@@ -1,23 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>B-Productive | All task lists</title>
     <script type="module" src="js/app.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/fc711cb7a6.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <%- include('partials/header') %>
 
     <main>
         <h1>Listas de tarefa</h1>
         <section>
-            <button id="newToDoList"> + Criar nova lista de tarefas</button>
+            <button id="newToDoList"> + Create a new task list</button>
         </section>
         <ul>
             <% list.forEach(element => {%>
-                <a href="app/list-<%= element.id %>">
-                    <li id="list-<%= element.id %>"><%= element.name %></li>
-                </a>
+
+                <div id="buttons-div">
+                    <form action="app/list-<%= element.id %>" method="get" class="listItem">
+                        <button type="submit" class="listname">
+                            <li><%= element.name %></li>
+                        </button>
+                    </form>
+                    <form action="/app/list-delete/<%= element.id %>" method="post">
+                        <button class="delete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
+                    </form>
+                </div>
+
             <%})%>
         </ul>
     </main>
