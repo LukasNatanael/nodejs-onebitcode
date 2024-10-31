@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+:root {
+    --text-color: #D9D9D9; 
+    --background-color: #191923; 
+    --complete-color: #6F58C9;
+    --text-complete-color: #FFFFFF;
+    --highlight-color: #F72585;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a { 
+    text-decoration: none;
+
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    
+    & nav  {
+        display: flex;
+        gap: 1.5rem;
+
+        & a{
+            display: flex;
+            gap: .5rem;
+            font-weight: bold;
+            color: var(--text-color);
+            
+            &:hover {
+                opacity: 70%;
+            }
+        }
+        
+        & #home {
+            color: var(--highlight-color);
+        }
+    }
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 5vh;
+    
+    & ul {
+        display: flex;
+        flex-direction: column;
+        gap: .8rem;
+
+        margin-top: 3vh;
+        list-style-type: none;
+        
+        padding: 1rem;
+        text-align: left;
+        width: 50%;
+        
+    }
+}
+
+#buttons-div {
+    display: flex;
+
+    background-color: var(--text-color);
+    color: var(--complete-color);
+    border-radius: 1rem;
+
+    & button {
+        padding: .5rem;
+    }
+
+    & .listItem {
+        width: 100%;
+    }
+
+    & .listname {
+        width: 100%;
+    }
+
+}
+
+
+#newToDoList {
+    background-color: var(--highlight-color);
+    border-radius: 1rem;
+    border: 1px solid transparent;
+    color: var(--text-color);
+    font-weight: bold;
+    padding: .5rem;
+    font-size: 1rem;
+
+    &:hover {
+        opacity: 70%;
+        cursor: pointer;
+    }
+}
