@@ -22,7 +22,7 @@ class AppController {
         res.render('index', { list: allLists })
     }
 
-    list(req, res) {
+    showList(req, res) {
         const id = req.params.id
         const currentList = toDo.getListByID(id)
         
@@ -32,6 +32,12 @@ class AppController {
 
         // console.log( currentList )
         // console.log( currentList.tasks.checkCompleteAllTasks() )
+        
+    }
+
+    deleteList(req, res) {
+        // const { listID } = req.params
+        res.send('Lista deletada!')
         
     }
 
@@ -48,6 +54,8 @@ class AppController {
         
         res.redirect(`/app/list-${listID}`)
     }
+
+    
 }
 
 module.exports = AppController
