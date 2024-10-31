@@ -54,7 +54,7 @@ class TaskList {
         const completeTasks = this.getAllTasks().filter( task => task.complete === true ).length
         const allTasks = this.getAllTasks().length
 
-        return completeTasks === allTasks ? 'Todas as tarefas foram concluidas!': `Ainda resta(m) ${allTasks-completeTasks} tarefa(s) a ser(em) concluida(s).`
+        return completeTasks === allTasks ? true: false
     }
 }
 
