@@ -74,28 +74,6 @@ main {
     }
 }
 
-#buttons-div {
-    display: flex;
-
-    background-color: var(--text-color);
-    color: var(--complete-color);
-    border-radius: 1rem;
-
-    & button {
-        padding: .5rem;
-    }
-
-    & .listItem {
-        width: 100%;
-    }
-
-    & .listname {
-        width: 100%;
-    }
-
-}
-
-
 #newToDoList {
     background-color: var(--highlight-color);
     border-radius: 1rem;
@@ -110,3 +88,46 @@ main {
         cursor: pointer;
     }
 }
+
+#buttons-div {
+    display: flex;
+    
+    & button {
+        font-size: 1.3rem;
+        border: 1px solid transparent;
+    }
+
+    & button:hover {
+        cursor: pointer;
+        background-color: var(--complete-color);
+        color: var(--text-color);
+
+    }
+
+}
+
+.listItem {
+    width: 100%;
+    
+}
+
+.listname {
+    width: 100%;
+    color: var(--complete-color);
+    border-top-left-radius: 10rem;
+    border-bottom-left-radius: 10rem;
+
+}
+
+
+.delete {
+    border-top-right-radius: 10rem;
+    border-bottom-right-radius: 10rem;
+    padding-right: .5rem;
+
+    & i {
+        padding-left: .3rem;
+    }
+}
+
+
