@@ -84,7 +84,10 @@ main {
     font-size: 1rem;
 
     &:hover {
-        opacity: 70%;
+        color: var(--highlight-color);
+        background-color: transparent;
+        border: 1px solid var(--highlight-color);
+                
         cursor: pointer;
     }
 }
@@ -111,6 +114,7 @@ main {
     
 }
 
+
 .listname {
     width: 100%;
     color: var(--complete-color);
@@ -118,7 +122,6 @@ main {
     border-bottom-left-radius: 10rem;
 
 }
-
 
 .delete {
     border-top-right-radius: 10rem;
@@ -129,5 +132,4 @@ main {
         padding-left: .3rem;
     }
 }
-
 
