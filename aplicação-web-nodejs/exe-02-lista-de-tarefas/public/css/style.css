@@ -78,7 +78,7 @@ main {
     background-color: var(--highlight-color);
     border-radius: 1rem;
     border: 1px solid transparent;
-    color: var(--text-color);
+    color: var(--text-complete-color);
     font-weight: bold;
     padding: .5rem;
     font-size: 1rem;
