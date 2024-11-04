@@ -36,9 +36,10 @@ class AppController {
     }
 
     deleteList(req, res) {
-        // const { listID } = req.params
-        res.send('Lista deletada!')
-        
+        const { listID } = req.params
+        toDo.deleteList(listID)
+
+        res.redirect('/')
     }
 
     taskComplete(req, res) {
