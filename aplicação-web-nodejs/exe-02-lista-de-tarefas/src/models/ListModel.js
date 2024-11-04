@@ -39,6 +39,13 @@ class ToDoList {
         console.log(`[ LISTA ] "${listToComplete._name}" foi marcada como finalizada \n`)
     }
     
+    deleteList(id) {
+        const taskToDelete = this.getListByID(id)
+        console.log(`[ LISTA ] "${ taskToDelete.name }" foi deletada \n`)
+        this._lists = this._lists.filter( list => list.id != id )
+        
+    }
+    
 }
 
 const toDo = new ToDoList()
