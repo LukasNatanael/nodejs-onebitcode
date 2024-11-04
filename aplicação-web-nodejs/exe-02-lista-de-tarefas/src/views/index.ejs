@@ -19,16 +19,18 @@
         <ul>
             <% list.forEach(element => {%>
 
-                <div id="buttons-div">
-                    <form action="app/list-<%= element.id %>" method="get" class="listItem">
-                        <button type="submit" class="listname">
-                            <li><%= element.name %></li>
-                        </button>
-                    </form>
-                    <form action="/app/list-delete/<%= element.id %>" method="post">
-                        <button class="delete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
-                    </form>
-                </div>
+                <li id="item-<%=element.id%>">
+                    <div class="buttons-div">
+                        <form action="app/list-<%= element.id %>" method="get" class="listItem">
+                            <button type="submit" class="listname">
+                                <%= element.name %>
+                            </button>
+                        </form>
+                        <form action="app/list-delete/<%= element.id %>" method="post" class="listItemDelete">
+                            <button class="delete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
+                        </form>
+                    </div>
+                </li>
 
             <%})%>
         </ul>
