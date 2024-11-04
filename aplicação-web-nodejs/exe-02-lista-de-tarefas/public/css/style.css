@@ -92,7 +92,7 @@ main {
     }
 }
 
-#buttons-div {
+.buttons-div {
     display: flex;
     
     & button {
