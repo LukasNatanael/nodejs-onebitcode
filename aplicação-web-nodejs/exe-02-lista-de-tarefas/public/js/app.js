@@ -7,8 +7,7 @@ function generateID() {
 
 function newList() {
     const listname = prompt('Informe o nome da lista: ')
-
-    if (listname === '') { return alert('Por favor, informe um nome para a lista!') }
+    if (!listname) { return alert('Por favor, informe um nome para a lista!') }
 
     const id = generateID()
     const ul    = document.querySelector('ul')
@@ -56,4 +55,5 @@ function newList() {
 
 
 newToDoList.addEventListener( 'click', newList )
+
 
