@@ -19,7 +19,7 @@ console.clear()
 class AppController {
     index(req, res) {
         const allLists = toDo.getAllLists()
-        res.render('index', { list: allLists })
+        res.render('index', { list: allLists, tasks: toDo })
     }
 
     showList(req, res) {
@@ -35,6 +35,16 @@ class AppController {
         
     }
 
+    createList(req, res) {
+        const { listID, listname} = req.params
+        console.log(listID, listname)
+
+        toDo.newList( new TaskList(listname), listID )
+        console.log(toDo.getListByID(listID))
+
+        res.redirect(`/app/list-${listID}`)
+    }
+
     deleteList(req, res) {
         const { listID } = req.params
         toDo.deleteList(listID)
@@ -48,11 +58,11 @@ class AppController {
         const currentList = toDo.getListByID( listID )
         const tasks = currentList.tasks
         const taskToComplete = tasks.getTaskByID(taskID)
-        taskToComplete.complete = true
 
-        // console.log(taskToComplete)
-        console.log( tasks.checkCompleteAllTasks() )
-        
+        // verificando se todas as tarefas da lista atual foram concluidas para concluir a lista
+        taskToComplete.complete = taskToComplete.complete === true ? false: true
+        currentList.complete = tasks.checkCompleteAllTasks() === true ? true: false
+     
         res.redirect(`/app/list-${listID}`)
     }
 
