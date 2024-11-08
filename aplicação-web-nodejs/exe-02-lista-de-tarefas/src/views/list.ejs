@@ -1,23 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista</title>
+    <title>B-Productive | <%= list.name %></title>
+    <link rel="stylesheet" href="/css/style.css">
+
 </head>
 <body>
   <%- include('partials/header') %>
 
     <main>
         <h1><%= list.name %></h1>
+        <section>
+            <button class="createItem" id="newTask"> + Create a new task</button>
+        </section>
         <ul>
-            <% list.tasks._tasks.forEach( item => { %>
-                <form action="list-<%= list.id %>/task-<%= item.id %>-complete" method="post" id="task-<%= item.id %>">
-                    <button type="submit" id="task-<%= item.id %>">
-                        <li > <%= item.name %> </li>
-                    </button>
-                </form>
-            <% }) %>
+            <li>
+                <% list.tasks._tasks.forEach( item => { %>
+                    <form action="list-<%= list.id %>/task-<%= item.id %>-complete" method="post" id="task-<%= item.id %>" class="taskItem">
+                        <% if (item.complete != true) {%>
+                            <button type="submit" id="task-<%= item.id %>" class="listname taskname">
+                                <%= item.name %>
+                            </button>
+                        <% } else {%>
+                            <button type="submit" id="task-<%= item.id %>" class="listname taskname taskComplete">
+                                <%= item.name %>
+                            </button>
+                        <% } %>
+                    </form>
+                <% }) %>
+            </li>
         </ul>
     </main>
     
