@@ -59,22 +59,23 @@ main {
 
     margin-top: 5vh;
     
-    & ul {
-        display: flex;
-        flex-direction: column;
-        gap: .8rem;
-
-        margin-top: 3vh;
-        list-style-type: none;
-        
-        padding: 1rem;
-        text-align: left;
-        width: 50%;
-        
-    }
 }
 
-#newToDoList {
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+
+    margin-top: 3vh;
+    list-style-type: none;
+    
+    padding: 1rem;
+    text-align: left;
+    width: 50%;
+    
+}
+
+.createItem {
     background-color: var(--highlight-color);
     border-radius: 1rem;
     border: 1px solid transparent;
@@ -94,18 +95,13 @@ main {
 
 .buttons-div {
     display: flex;
-    
-    & button {
-        font-size: 1.3rem;
-        border: 1px solid transparent;
-    }
 
     & button:hover {
         cursor: pointer;
         background-color: var(--complete-color);
         color: var(--text-color);
 
-    }
+    } 
 
 }
 
@@ -121,15 +117,47 @@ main {
     border-top-left-radius: 10rem;
     border-bottom-left-radius: 10rem;
 
+    font-size: 1.3rem;
+    border: 1px solid transparent;
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--complete-color);
+        color: var(--text-color);
+
+    }
+
 }
 
 .delete {
     border-top-right-radius: 10rem;
     border-bottom-right-radius: 10rem;
     padding-right: .5rem;
+    font-size: 1.3rem;
+    border: 1px solid transparent;
 
     & i {
         padding-left: .3rem;
     }
 }
 
+.taskname {
+    border-radius: 10rem;
+}
+
+.taskItem {
+    display: flex;
+    flex-direction: column;
+    padding:    .5rem 0 .5rem 0;
+}
+
+.taskComplete {
+    color: var(--text-complete-color);
+    background-color: var(--complete-color);
+    text-decoration: line-through;
+}
+
+.hover {
+    color: var(--text-complete-color);
+    background-color: var(--complete-color);
+}
