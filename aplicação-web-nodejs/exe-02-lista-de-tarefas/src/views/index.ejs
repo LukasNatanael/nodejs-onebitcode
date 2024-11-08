@@ -14,21 +14,32 @@
     <main>
         <h1>Listas de tarefa</h1>
         <section>
-            <button id="newToDoList"> + Create a new task list</button>
+            <button class="createItem" id="newToDoList"> + Create a new task list</button>
         </section>
         <ul>
             <% list.forEach(element => {%>
-
                 <li id="item-<%=element.id%>">
                     <div class="buttons-div">
                         <form action="app/list-<%= element.id %>" method="get" class="listItem">
-                            <button type="submit" class="listname">
-                                <%= element.name %>
-                            </button>
-                        </form>
-                        <form action="app/list-delete/<%= element.id %>" method="post" class="listItemDelete">
-                            <button class="delete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
-                        </form>
+
+                            <% if (element.complete != true) {%>
+                                <button type="submit" class="listname">
+                                    <%= element.name %>
+                                </button>
+                                </form>
+                                <form action="app/list-delete/<%= element.id %>" method="post" class="listItemDelete">
+                                    <button class="delete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
+                                </form>
+                            <% } else {%>
+                                    <button type="submit" class="listname taskComplete">
+                                        <%= element.name %>
+                                    </button>
+                                </form>
+                                <form action="app/list-delete/<%= element.id %>" method="post" class="listItemDelete">
+                                    <button class="delete taskComplete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
+                                </form>
+                            <% }%>
+
                     </div>
                 </li>
 
