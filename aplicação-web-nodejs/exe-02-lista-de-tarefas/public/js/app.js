@@ -1,5 +1,4 @@
 const newToDoList = document.querySelector('#newToDoList')
-const newTaskItem = document.querySelector('#newTask')
 
 const li = document.querySelectorAll('li')
 const listsItems = document.querySelectorAll('.listItem')
@@ -91,4 +90,3 @@ function newList() {
 }
 
 newToDoList.addEventListener( 'click', newList )
-// newTaskItem.addEventListener( 'click', newTask )
