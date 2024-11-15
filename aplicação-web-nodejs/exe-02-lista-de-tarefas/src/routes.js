@@ -5,6 +5,7 @@ const routes  = express.Router()
 const appController = new AppController()
 
 routes.get('/', appController.index)
+routes.get('/app', appController.allLists)
 routes.get('/app/list-:id', appController.showList)
 routes.post('/app/new-list', appController.createList)
 routes.post('/app/list-:listID/task-:taskID-complete', appController.taskComplete)
