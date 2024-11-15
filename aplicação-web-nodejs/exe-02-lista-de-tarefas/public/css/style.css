@@ -2,19 +2,69 @@
 
 
 :root {
-    --text-color: #D9D9D9; 
+    --text-color: #FFFFFF;
     --background-color: #191923; 
     --complete-color: #6F58C9;
     --complete-color-hover: #5c49a5;
-    --text-complete-color: #FFFFFF;
-    --highlight-color: #F72585;
-    --highlight-color-hover: #dd2075;
 }
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+#home-page-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 80vh;
+    user-select: none;
+
+    & main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        row-gap: 1.5rem;
+
+        width: 31vw;
+        
+
+        & img {
+            width: 10rem;
+        }
+
+        & #title {
+            font-size: 2.5rem;
+        }
+
+        & p {
+            text-align: center;
+        }
+
+        & button {
+            padding: 5px 1rem;
+    
+            background-color: var(--complete-color);
+            border-radius: 8px;
+            border: 1px solid transparent;
+            color: var(--text-color);
+            font-size: 1.3rem;
+
+            transition: background ease-in .3s;
+        
+            &:hover {
+                color: var(--text-color);
+                background-color: var(--complete-color-hover);
+                cursor: pointer;
+            }
+    
+        }
+    }
+}
+
 
 a { text-decoration: none; }
 
@@ -46,7 +96,7 @@ header {
         }
         
         & #home {
-            color: var(--highlight-color);
+            color: var(--complete-color);
         }
     }
 }
@@ -74,18 +124,18 @@ ul {
 }
 
 .createItem {
-    background-color: var(--highlight-color);
+    background-color: var(--complete-color);
     border-radius: 0 8px 8px 0;
     border: 1px solid transparent;
-    color: var(--text-complete-color);
+    color: var(--text-color);
     font-weight: bold;
     padding: .5rem;
     font-size: 1rem;
 
     &:hover {
-        color: var(--highlight-color);
+        color: var(--complete-color);
         background-color: transparent;
-        border: 1px solid var(--highlight-color);
+        border: 1px solid var(--complete-color);
                 
         cursor: pointer;
     }
@@ -140,7 +190,7 @@ ul {
 }
 
 .taskComplete {
-    color: var(--text-complete-color);
+    color: var(--text-color);
     background-color: var(--complete-color);
     text-decoration: line-through;
 }
@@ -176,17 +226,17 @@ ul {
     & button {
         padding: 5px .5rem;
 
-        background-color: var(--highlight-color);
+        background-color: var(--complete-color);
         border-radius: 0 8px 8px 0;
         border: 2px solid var(--complete-color);
         border-left: 0px;
-        color: var(--text-complete-color);
+        color: var(--text-color);
         font-weight: bold;
         font-size: 1rem;
     
         &:hover {
-            color: var(--text-complete-color);
-            background-color: var(--highlight-color-hover);
+            color: var(--text-color);
+            background-color: var(--complete-color-hover);
             border-color: var(--complete-color-hover);
             cursor: pointer;
         }
