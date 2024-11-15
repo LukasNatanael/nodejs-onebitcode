@@ -1,4 +1,5 @@
 const li = document.querySelectorAll('li')
+const trashIcons = document.querySelectorAll('.delete')
 
 li.forEach( item => {
     item.addEventListener('mouseenter', (event) => {
@@ -16,4 +17,13 @@ li.forEach( item => {
         listname.classList.toggle('hover')
     })
 
+} )
+
+trashIcons.forEach( item => {
+    item.addEventListener('click', (event) => {
+        const confirmDelete = confirm('Tem certeza que deseja excluir ?')
+        if (!confirmDelete) {
+            event.preventDefault()
+        }
+    })
 } )
