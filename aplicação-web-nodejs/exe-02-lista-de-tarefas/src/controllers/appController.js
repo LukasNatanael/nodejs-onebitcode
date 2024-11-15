@@ -4,8 +4,12 @@ const { TaskList } = require('../models/TaskModel')
 const toDo = new ToDoList()
 class AppController {
     index(req, res) {
+        res.render('index')
+    }
+
+    allLists(req, res) {
         const allLists = toDo.getAllLists()
-        res.render('index', { list: allLists, tasks: toDo })
+        res.render('allLists', { list: allLists, tasks: toDo })
     }
 
     showList(req, res) {
@@ -21,14 +25,14 @@ class AppController {
             toDo.newList( new TaskList(listname))
         }
 
-        res.redirect('/')
+        res.redirect('/app')
     }
 
     deleteList(req, res) {
         const { listID } = req.params
         toDo.deleteList(listID)
 
-        res.redirect('/')
+        res.redirect('/app')
     }
 
     taskComplete(req, res) {
