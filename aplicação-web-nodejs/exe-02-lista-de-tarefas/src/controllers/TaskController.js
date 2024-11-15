@@ -12,7 +12,7 @@ class TaskController {
             tasks.newTask(taskname)
         }
 
-        res.redirect(`/app/list-${listID}`)
+        res.redirect(`/app/list/${listID}`)
 
     }
 
@@ -24,7 +24,7 @@ class TaskController {
 
         tasks.deleteTask(taskID)
 
-        res.redirect(`/app/list-${listID}`)
+        res.redirect(`/app/list/${listID}`)
     }
 
     taskComplete(req, res) {
@@ -38,7 +38,7 @@ class TaskController {
 
         toDo.checkCompleteList(listID)
 
-        res.redirect(`/app/list-${listID}`)
+        res.redirect(`/app/list/${listID}`)
     }
 }
 

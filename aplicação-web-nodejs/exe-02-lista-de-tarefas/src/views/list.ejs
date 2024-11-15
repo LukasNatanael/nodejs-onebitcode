@@ -15,7 +15,7 @@
     <main>
         <h1><%= list.name %></h1>
         <section class="createSection">
-            <form action="/app/list-<%= list.id %>/new-task" id="newList" method="post">
+            <form action="/app/list/<%= list.id %>/task/new-task" id="newList" method="post">
                 <input type="text" placeholder="Adicionar nova tarefa..." name="taskname">
                 <button> + Create a task</button>
             </form>
@@ -27,24 +27,24 @@
                         <div class="buttons-div">
 
                             <% if (item.complete != true) {%>
-                                    <form action="list-<%= list.id %>/task-<%= item.id %>-complete" method="post" class="listItem">
+                                    <form action="/app/list/<%= list.id %>/task/<%= item.id %>/complete" method="post" class="listItem">
                                         <button type="submit" id="task-<%= item.id %>" class="listname">
                                             <%= item.name %>
                                         </button>
                                     </form>
 
-                                    <form action="list-<%= list.id %>/task-<%= item.id %>/delete" method="post" class="listItemDelete">
+                                    <form action="/app/list/<%= list.id %>/task/<%= item.id %>/delete" method="post" class="listItemDelete">
                                         <button class="delete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
                                     </form>
                                     
                                 <% } else {%>
-                                    <form action="list-<%= list.id %>/task-<%= item.id %>-complete" method="post" class="listItem">
+                                    <form action="/app/list/<%= list.id %>/task/<%= item.id %>/complete" method="post" class="listItem">
                                         <button type="submit" id="task-<%= item.id %>" class="listname taskname taskComplete">
                                             <%= item.name %>
                                         </button>
                                     </form>
 
-                                    <form action="list-<%= list.id %>/task-<%= item.id %>/delete" method="post" class="listItemDelete">
+                                    <form action="/app/list/<%= list.id %>/task/<%= item.id %>/delete" method="post" class="listItemDelete">
                                         <button class="delete taskComplete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
                                     </form>
                             <% } %>
