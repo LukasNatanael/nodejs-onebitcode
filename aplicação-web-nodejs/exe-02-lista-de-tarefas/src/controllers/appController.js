@@ -36,13 +36,12 @@ class AppController {
     }
 
     createList(req, res) {
-        const { listID, listname} = req.params
-        console.log(listID, listname)
+        const { listname } = req.body
+        if (listname) {
+            toDo.newList( new TaskList(listname))
+        }
 
-        toDo.newList( new TaskList(listname), listID )
-        console.log(toDo.getListByID(listID))
-
-        res.redirect(`/app/list-${listID}`)
+        res.redirect('/')
     }
 
     deleteList(req, res) {
@@ -61,8 +60,41 @@ class AppController {
 
         // verificando se todas as tarefas da lista atual foram concluidas para concluir a lista
         taskToComplete.complete = taskToComplete.complete === true ? false: true
-        currentList.complete = tasks.checkCompleteAllTasks() === true ? true: false
-     
+        // currentList.complete = tasks.checkCompleteAllTasks() === true ? true: false
+        
+        // if (currentList.complete) {
+        //     console.log(`[ LISTA ] "${currentList.name}" foi marcada como finalizada \n`)
+        // }
+
+        toDo.checkCompleteList(listID)
+
+        res.redirect(`/app/list-${listID}`)
+    }
+
+    createTask(req, res) {
+        const { taskname } = req.body
+        const { listID } = req.params
+
+        const currentList = toDo.getListByID( listID )
+        const tasks = currentList.tasks
+
+        if (taskname) {
+            tasks.newTask(taskname)
+        }
+
+        // res.send( 'Tarefa criada!' )
+        res.redirect(`/app/list-${listID}`)
+
+    }
+
+    deleteTask(req, res) {
+        const { listID, taskID } = req.params
+        
+        const currentList = toDo.getListByID( listID )
+        const tasks = currentList.tasks
+
+        tasks.deleteTask(taskID)
+
         res.redirect(`/app/list-${listID}`)
     }
 
