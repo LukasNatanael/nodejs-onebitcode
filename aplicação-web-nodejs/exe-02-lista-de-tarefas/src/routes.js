@@ -13,7 +13,6 @@ routes.post('/app/new-list', listController.createList)
 routes.post('/app/list-delete/:listID', listController.deleteList)
 
 routes.post('/app/list-:listID/task-:taskID-complete', taskController.taskComplete)
-
 routes.post('/app/list-:listID/new-task', taskController.createTask)
 routes.post('/app/list-:listID/task-:taskID/delete', taskController.deleteTask)
 
