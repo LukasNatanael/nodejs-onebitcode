@@ -16,14 +16,7 @@ class ToDoList {
     }
 
     newList( list, id=this.#generateID ) {
-
-        // this._lists[id] = { list }
-        // this._lists[id]['complete'] = false
-
         this._lists.push( { id: id, name: list._name, tasks: list, complete: false } )
-
-        
-        // this._lists.push( { id: id, data: {listname: list} } )
         
     }
 
@@ -44,6 +37,17 @@ class ToDoList {
         console.log(`[ LISTA ] "${ taskToDelete.name }" foi deletada \n`)
         this._lists = this._lists.filter( list => list.id != id )
         
+    }
+
+    checkCompleteList(id) {
+        const currentList = this.getListByID(id)
+        const tasks = currentList.tasks
+        currentList.complete = tasks.checkCompleteAllTasks() === true ? true: false
+        
+        if (currentList.complete) {
+            console.log(`[ LISTA ] "${currentList.name}" foi marcada como finalizada \n`)
+        }
+
     }
     
 }
