@@ -14,7 +14,6 @@ tarefas_do_trabalho.newTask('Verificar OS')
 toDo.newList(tarefas_de_casa)
 toDo.newList(tarefas_do_trabalho)
 
-
 console.clear()
 class AppController {
     index(req, res) {
@@ -25,14 +24,8 @@ class AppController {
     showList(req, res) {
         const id = req.params.id
         const currentList = toDo.getListByID(id)
-        
-        // res.render('list', { id: currentList.id, name: currentList.name, tasks: currentList.tasks._tasks })
 
         res.render('list', { list: currentList })
-
-        // console.log( currentList )
-        // console.log( currentList.tasks.checkCompleteAllTasks() )
-        
     }
 
     createList(req, res) {
@@ -58,13 +51,7 @@ class AppController {
         const tasks = currentList.tasks
         const taskToComplete = tasks.getTaskByID(taskID)
 
-        // verificando se todas as tarefas da lista atual foram concluidas para concluir a lista
         taskToComplete.complete = taskToComplete.complete === true ? false: true
-        // currentList.complete = tasks.checkCompleteAllTasks() === true ? true: false
-        
-        // if (currentList.complete) {
-        //     console.log(`[ LISTA ] "${currentList.name}" foi marcada como finalizada \n`)
-        // }
 
         toDo.checkCompleteList(listID)
 
@@ -82,7 +69,6 @@ class AppController {
             tasks.newTask(taskname)
         }
 
-        // res.send( 'Tarefa criada!' )
         res.redirect(`/app/list-${listID}`)
 
     }
@@ -97,8 +83,6 @@ class AppController {
 
         res.redirect(`/app/list-${listID}`)
     }
-
-    
 }
 
 module.exports = AppController
