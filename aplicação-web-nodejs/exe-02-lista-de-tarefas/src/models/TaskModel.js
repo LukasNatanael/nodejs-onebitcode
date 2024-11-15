@@ -22,9 +22,9 @@ class TaskList {
         return id
     }
 
-    newTask(task) {
+    newTask(task, id=this.#generateID()) {
         this._tasks.push({ 
-            id: this.#generateID(),
+            id: id,
             name: task,
             complete: task.complete === true ? true: true || task.complete === undefined ? false : true || task.complete === false ? false : true
         })
@@ -32,10 +32,11 @@ class TaskList {
         console.log(`[ ${this._name} ] "${task}" foi adicionado a lista \n`)
     }
 
-    deleteTask(task) {
-        this._tasks = this._tasks.filter( item => item.name != task )
+    deleteTask(taskID) {
+        const taskToDelete = this.getAllTasks().find( item => item.id === taskID )
+        this._tasks = this._tasks.filter( item => item.id != taskID )
 
-        console.log(`[ ${this._name} ] "${task}" foi removido da lista \n`)
+        console.log(`[ ${this._name} ] "${taskToDelete.name}" foi removido da lista \n`)
 
     }
 
