@@ -9,12 +9,8 @@ class TaskList {
     }
 
     getTaskByID(id) {
-        return this._tasks.filter( item => item.id === id )[0]
-    }
-    
-    getTaskByName(name) {
-        const task = this._tasks.filter( item => item.name === name )[0]
-        return task === undefined ? `[ Tarefa não encontrada ] "${name}" não foi localizada na lista de tarefas.` : task
+        const task = this._tasks.filter( item => item.id === id )[0]
+        return task === undefined ? `[ Tarefa não encontrada ] A tarefa solicitada não foi localizada.` : task
     }
 
     #generateID() {
@@ -29,31 +25,25 @@ class TaskList {
             complete: task.complete === true ? true: true || task.complete === undefined ? false : true || task.complete === false ? false : true
         })
 
-        console.log(`[ ${this._name} ] "${task}" foi adicionado a lista \n`)
+        console.log(`[ ${this._name} ] "${task}" foi adicionado a lista! \n`)
     }
 
     deleteTask(taskID) {
         const taskToDelete = this.getAllTasks().find( item => item.id === taskID )
         this._tasks = this._tasks.filter( item => item.id != taskID )
 
-        console.log(`[ ${this._name} ] "${taskToDelete.name}" foi removido da lista \n`)
-
-    }
-
-    completeTask(task) {
-        this._tasks.find( item => {
-            if (item.name === task) {
-                item.complete = true
-            }
-        })
-
-        console.log(`[ TAREFA ] "${task}" foi marcada como finalizada \n`)
-
+        console.log(`[ ${this._name} ] "${taskToDelete.name}" foi removido da lista. \n`)
     }
 
     checkCompleteAllTasks() {
         const completeTasks = this.getAllTasks().filter( task => task.complete === true ).length
         const allTasks = this.getAllTasks().length
+
+        this._tasks.find( item => {
+            if (item.complete === true) {
+                console.log(`[ TAREFA ] "${item.name}" foi marcada como finalizada! \n`)
+            }
+        })
 
         return completeTasks === allTasks ? true: false
     }
