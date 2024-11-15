@@ -5,8 +5,10 @@
     --text-color: #D9D9D9; 
     --background-color: #191923; 
     --complete-color: #6F58C9;
+    --complete-color-hover: #5c49a5;
     --text-complete-color: #FFFFFF;
     --highlight-color: #F72585;
+    --highlight-color-hover: #dd2075;
 }
 * {
     margin: 0;
@@ -184,7 +186,8 @@ ul {
     
         &:hover {
             color: var(--text-complete-color);
-            background-color: var(--highlight-color);
+            background-color: var(--highlight-color-hover);
+            border-color: var(--complete-color-hover);
             cursor: pointer;
         }
 
