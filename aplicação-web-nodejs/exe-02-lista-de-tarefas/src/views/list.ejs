@@ -25,11 +25,12 @@
                 <% list.tasks._tasks.forEach( item => { %>
                     <li id="task-<%=item.id%>">
                         <div class="buttons-div">
-                            <form action="list-<%= list.id %>/task-<%= item.id %>-complete" method="post" class="listItem">
-                                <% if (item.complete != true) {%>
-                                    <button type="submit" id="task-<%= item.id %>" class="listname">
-                                        <%= item.name %>
-                                    </button>
+
+                            <% if (item.complete != true) {%>
+                                    <form action="list-<%= list.id %>/task-<%= item.id %>-complete" method="post" class="listItem">
+                                        <button type="submit" id="task-<%= item.id %>" class="listname">
+                                            <%= item.name %>
+                                        </button>
                                     </form>
 
                                     <form action="list-<%= list.id %>/task-<%= item.id %>/delete" method="post" class="listItemDelete">
@@ -37,15 +38,16 @@
                                     </form>
                                     
                                 <% } else {%>
-                                    <button type="submit" id="task-<%= item.id %>" class="listname taskname taskComplete">
-                                        <%= item.name %>
-                                    </button>
+                                    <form action="list-<%= list.id %>/task-<%= item.id %>-complete" method="post" class="listItem">
+                                        <button type="submit" id="task-<%= item.id %>" class="listname taskname taskComplete">
+                                            <%= item.name %>
+                                        </button>
                                     </form>
 
                                     <form action="list-<%= list.id %>/task-<%= item.id %>/delete" method="post" class="listItemDelete">
                                         <button class="delete taskComplete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
                                     </form>
-                                <% } %>
+                            <% } %>
                         </div>
                     </li>
                 <% }) %>
