@@ -13,37 +13,41 @@
 
     <main>
         <h1>Listas de tarefa</h1>
-        <section>
-            <button class="createItem" id="newToDoList"> + Create a new task list</button>
+        <section class="createSection">
+            <form action="app/new-list" method="post" id="newList">
+                <input type="text" placeholder="Adicionar nova lista..." name="listname">
+                <button type="submit"> + Create a list</button>
+            </form>
         </section>
         <ul>
-            <% list.forEach(element => {%>
-                <li id="item-<%=element.id%>">
-                    <div class="buttons-div">
-                        <form action="app/list-<%= element.id %>" method="get" class="listItem">
+            <% if( list.length != 0 ) {%>
+                <% list.forEach(element => {%>
+                    <li id="item-<%=element.id%>">
+                        <div class="buttons-div">
+                            <form action="app/list-<%= element.id %>" method="get" class="listItem">
 
-                            <% if (element.complete != true) {%>
-                                <button type="submit" class="listname">
-                                    <%= element.name %>
-                                </button>
-                                </form>
-                                <form action="app/list-delete/<%= element.id %>" method="post" class="listItemDelete">
-                                    <button class="delete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
-                                </form>
-                            <% } else {%>
-                                    <button type="submit" class="listname taskComplete">
+                                <% if (element.complete != true) {%>
+                                    <button type="submit" class="listname">
                                         <%= element.name %>
                                     </button>
-                                </form>
-                                <form action="app/list-delete/<%= element.id %>" method="post" class="listItemDelete">
+                                    </form>
+                                    <form action="app/list-delete/<%= element.id %>" method="post" class="listItemDelete">
+                                    <button class="delete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
+
+                                <% } else {%>
+                                        <button type="submit" class="listname taskComplete">
+                                            <%= element.name %>
+                                        </button>
+                                    </form>
+                                    <form action="app/list-delete/<%= element.id %>" method="post" class="listItemDelete">
                                     <button class="delete taskComplete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
-                                </form>
-                            <% }%>
+                                <% }%>
+                            </form>
+                        </div>
+                    </li>
 
-                    </div>
-                </li>
-
-            <%})%>
+                <%})%>
+            <% }%>
         </ul>
     </main>
 
