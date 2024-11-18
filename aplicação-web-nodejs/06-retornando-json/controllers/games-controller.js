@@ -26,11 +26,45 @@ module.exports = {
         } else {
             res.json( game )
         }
-    }
+    },
 
     // POST /games
+    save: (req, res) => {
+        const { name, genres, year } = req.body
+        const newGame = {
+            id: Math.floor( Math.random() * 9999 ),
+            name,
+            genres,
+            year
+        }
+
+        games.push( newGame )
+        
+        res.status(201) // Informa que algo foi criado
+        res.json( newGame )
+    },
 
     // PUT /games/:id
 
     // DELETE /games/:id
+    
+    // POST /games/:id/genres
+    addGenre: (req, res) => {
+        const { id } = req.params
+        const { genre } = req.body
+        
+        const gameIndex = games.findIndex( game => game.id === +id )
+
+        // index -1 significa que o index não foi localizado 
+        if ( gameIndex === -1 ) {
+            return res.status(404).json({ message: 'Game not found!' })
+        }
+
+        if ( typeof genre !== 'string' || games[gameIndex].genres.includes( genre ) ) {
+            return res.status(400).json({ messge: 'Invalid genre!' })
+        }
+
+        games[gameIndex].genres.push( genre )
+        res.json( games[gameIndex] )
+    }
 }
