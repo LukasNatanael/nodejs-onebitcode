@@ -18,10 +18,19 @@ class MusicModel {
 
     get data() {
         if ( !this.#title || !this.#year || !this.#artist || !this.#album ) {
-            return console.log('Os dados informados são insuficientes para cadastro!')
+            return 'Os dados informados são insuficientes para cadastro!'
         }
 
+        const data = {
+            id:     this.#id,
+            title:  this.#title,
+            year:   this.#year,
+            artist: this.#artist,
+            album:  this.#album
+        }
+        
         return {
+            fullData: data,
             id:     this.#id,
             title:  this.#title,
             year:   this.#year,
@@ -30,9 +39,28 @@ class MusicModel {
         }
 
     }
+
+    get title() {
+        return this.#title
+    }
+
+    set data({ title, year, artist, album }) {
+
+        if (title) {
+            this.#title = title
+        }
+        if (year) {
+            this.#year = year
+        }
+        if (artist) {
+            this.#artist = artist
+        }
+        if (album) {
+            this.#album = album
+        }
+
+        return console.log('Dados atualizados!')
+    }
 }
 
-console.clear()
-const music = new MusicModel( 'Big Poppa - 2007 Remaster', '2007', 'The Notorius B.I.G', 'Greatest Hits')
-
-console.log( music.data )
+module.exports = MusicModel
