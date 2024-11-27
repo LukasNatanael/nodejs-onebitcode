@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Playlists</title>
+</head>
+<body>
+    <main>
+        <% playlists.forEach( item => { %>
+            <p> <%= item.playlist.name %> </p>
+            <p> <%= item.playlist.tags %> </p>
+        <% }) %>
+        <section id="newPlaylist" >
+            <button>
+                <a href="/playlist">+</a>
+            </button>
+        </section>
+    </main>
+</body>
+</html>
