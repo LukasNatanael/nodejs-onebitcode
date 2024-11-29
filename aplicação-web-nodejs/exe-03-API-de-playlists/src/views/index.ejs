@@ -1,20 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-ber">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Playlists</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://kit.fontawesome.com/fc711cb7a6.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <main>
-        <% playlists.forEach( item => { %>
-            <p> <%= item.playlist.name %> </p>
-            <p> <%= item.playlist.tags %> </p>
-        <% }) %>
-        <section id="newPlaylist" >
-            <button>
-                <a href="/playlist">+</a>
-            </button>
+    <main id="container">
+        <section class="bento" id="highlights">highlights</section>
+        <section class="bento" id="sidebar">sidebar</section>
+        <section class="bento" id="top-artists">top-artists</section>
+        <section class="bento" id="most-played">most-played</section>
+        <section class="bento" id="recommendations">recommendations</section>
+        <section class="bento" id="playing-now">
+            <div id="playing-now-header">
+                <p>Player</p> <i class="fa-solid fa-heart" id="save-music"></i>
+            </div>
+            <div id="playing-now-box">
+                <figure id="playing-now-image">
+                    <img src="" alt="playing-now-image">
+                </figure>
+                <div id="music-info">
+                    <h1>Title</h3>
+                    <p>Artists</p>
+                    <span id="progress-bar">
+                        <span id="current-progress">2:15</span>
+                        ----------0-------
+                        <span id="progress-total">3:36</span>
+                </span>
+                </div>
+            </div>
         </section>
     </main>
 </body>
