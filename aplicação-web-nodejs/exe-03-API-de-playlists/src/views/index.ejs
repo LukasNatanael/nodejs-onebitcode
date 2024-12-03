@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Playlists</title>
+    <title>Home Page</title>
     <link rel="stylesheet" href="css/index.css">
     <script src="https://kit.fontawesome.com/fc711cb7a6.js" crossorigin="anonymous"></script>
+    <script type="module" src="js/player.js"></script>
 </head>
 <body>
     <main id="container">
@@ -18,20 +19,38 @@
             <div id="playing-now-header">
                 <p>Player</p> <i class="fa-solid fa-heart" id="save-music"></i>
             </div>
+
             <div id="playing-now-box">
                 <figure id="playing-now-image">
-                    <img src="" alt="playing-now-image">
+                    <!-- <img src="" alt="playing-now-image"> -->
+                    <!-- <i class="fa-solid fa-music"></i> -->
                 </figure>
-                <div id="music-info">
-                    <h1>Title</h3>
-                    <p>Artists</p>
-                    <span id="progress-bar">
-                        <span id="current-progress">2:15</span>
-                        ----------0-------
-                        <span id="progress-total">3:36</span>
-                </span>
+
+                <div class="music-info">
+                    <h1 id="music-name">Title</h3>
+                    <p id="artist">Artists</p>
+                    <audio id="player" src=""></audio>
+                </div>
+                
+                <div class="playing-now-footer">
+
+                    <div class="time">
+                        <span class="currentTime">0:00</span>
+                        <span class="progress-bar">
+                            <span class="progress"></span>
+                        </span>
+                        <span class="duration">0:00</span>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="prevButton"><i class="fa-solid fa-backward-step"></i></button>
+                    <button id="playPauseButton"> <i class="fa-solid fa-play"></i> </button>
+                    <button id="nextButton"> <i class="fa-solid fa-forward-step"></i> </button>
                 </div>
             </div>
+
+
         </section>
     </main>
 </body>
