@@ -18,6 +18,10 @@ class PlaylistController {
         res.render('createPlaylist')
     }
 
+    showAllPlaylists(req, res) {
+        res.render('allPlaylists', {playlists: playlists})
+    }
+
     savePlaylist(req, res) {
         // const { name, tags } = req.body
         const { name, tags } = req.params
