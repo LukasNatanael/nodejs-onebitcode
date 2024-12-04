@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-ber">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +11,54 @@
 <body>
     <main id="container">
         <section class="bento" id="highlights">highlights</section>
-        <section class="bento" id="sidebar">sidebar</section>
+
+        <section class="bento" id="sidebar">
+            <section>
+                <div id="logo">
+                    <a href="/"><i class="fa-solid fa-headphones"></i> EchoVerse</a>
+                </div>
+                <span class="sidebar-item">
+                    <span id="user-image">user-image</span>
+                    <span>username</span>
+                    <span id="configs">
+                        <a href="/"><i class="fa-solid fa-gear"></i></a>
+                        <a href="/"><i class="fa-solid fa-bell"></i></a>
+                    </span>
+                </span>
+            </section>
+            <section>
+                <div><a href="/" class="sidebar-separators-title"><i class="fa-solid fa-music"></i>Suas Playlists</a></div>
+                <ul id="sidebar-items">
+                    <li id="newPlaylist" class="sidebar-item">
+                        <a href="/playlist"><i class="fa-regular fa-square-plus"></i>Nova Playlist</a>
+                    </li>
+                    <li id="favorites" class="sidebar-item">
+                        <a href="/playlist"><i class="fa-solid fa-heart"></i>Favoritos</a>
+                    </li>
+                    <% playlists.forEach( item => {%>
+                        <li id="<%= item.id %>" class="sidebar-item">
+                           <a href="/"> <%= item.playlist.name %> </a> 
+                        </li>
+                    <% }) %>
+                </ul>
+            </section>
+
+            <section>
+                <div><a href="/" class="sidebar-separators-title"><i class="fa-solid fa-music"></i>Descobrir Novas Músicas</a></div>
+                <span id="search-new-music" class="sidebar-item">
+                    <label for="search-input">
+                        <i class="fa-solid fa-search" id="search-icon"></i>
+                    </label>
+                    <input type="text" name="" id="search-input" placeholder="O que deseja ouvir hoje ?">
+                </span>
+                <div id="musics-search"></div>
+            </section>
+        </section>
+        
         <section class="bento" id="top-artists">top-artists</section>
         <section class="bento" id="most-played">most-played</section>
         <section class="bento" id="recommendations">recommendations</section>
+
         <section class="bento" id="playing-now">
             <div id="playing-now-header">
                 <p>Player</p> <i class="fa-solid fa-heart" id="save-music"></i>
