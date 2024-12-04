@@ -2,15 +2,17 @@ const MusicModel = require('../models/musicModel')
 class PlaylistModel {
     #id
     #name
+    #src
     #tags = []
     #musics = []
-    constructor( name, tags ) {
+    constructor( name, tags, src='' ) {
         if ( !name || !tags ) {
             return console.log('Dados insuficientes para cadastro!')
         }
 
         this.#id   = String(Math.floor( Math.random() * 9999 ))  
         this.#name = name
+        this.#src  = src
         this.#tags = []
 
         if (typeof tags === 'object') {
@@ -94,6 +96,9 @@ class PlaylistModel {
     }
     get musics() {
         return this.#musics
+    }
+    get src() {
+        return this.#src
     }
 
     getAllMusics(info='fullData') {
