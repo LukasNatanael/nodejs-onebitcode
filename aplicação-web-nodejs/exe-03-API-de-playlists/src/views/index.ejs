@@ -34,8 +34,10 @@
             <section>
                 <span class="sidebar-item" id="item-config">
                     <span id="user-info">
-                        <span id="user-image"></span>
-                        <span id="username">Lukas Natanael</span>
+                        <span id="user-image">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        <strong id="username">Biscoito</strong>
                     </span>
                     <span id="configs">
                         <a href="/" id="gear"><i class="fa-solid fa-gear"></i></a>
@@ -62,7 +64,6 @@
                         <li id="<%= item.id %>" class="sidebar-item">
                            <a href="/"> 
                                 <figure>
-                                    <% console.log(item.playlist.src) %>
                                     <img src="<%= item.playlist.src %>">
                                 </figure>
                                 <%= item.playlist.name %>
