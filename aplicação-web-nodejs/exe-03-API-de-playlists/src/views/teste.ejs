@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoVerse | Página de testes</title>
+    <link rel="stylesheet" href="css/teste.css">
+
+</head>
+<body>
+    <main>
+        <% songs.forEach( item => {%>
+            <img src="<%= item.artist_image %>" alt="" id="artist-image"></img>
+            <h1><%= item.artist %></h1>
+            <ul>
+                <% item.musics.forEach( music => {%>
+                    <li>
+                        <img src="<%= music.src %>" alt=""></img>
+                        <strong><%= music.name %></strong>
+                    </li>
+                <% }) %>
+            </ul>
+        <% }) %>
+    </main>
+</body>
+</html>
