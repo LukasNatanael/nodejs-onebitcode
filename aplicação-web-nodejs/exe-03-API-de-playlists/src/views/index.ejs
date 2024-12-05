@@ -28,16 +28,18 @@
         </section>
 
         <section class="bento" id="sidebar">
+            <section id="logo">
+                <a href="/"><i class="fa-solid fa-headphones"></i> EchoVerse</a>
+            </section>
             <section>
-                <div id="logo">
-                    <a href="/"><i class="fa-solid fa-headphones"></i> EchoVerse</a>
-                </div>
-                <span class="sidebar-item">
-                    <span id="user-image">user-image</span>
-                    <span>username</span>
+                <span class="sidebar-item" id="item-config">
+                    <span id="user-info">
+                        <span id="user-image"></span>
+                        <span id="username">Lukas Natanael</span>
+                    </span>
                     <span id="configs">
-                        <a href="/"><i class="fa-solid fa-gear"></i></a>
-                        <a href="/"><i class="fa-solid fa-bell"></i></a>
+                        <a href="/" id="gear"><i class="fa-solid fa-gear"></i></a>
+                        <a href="/" id="bell"><i class="fa-solid fa-bell"></i></a>
                     </span>
                 </span>
             </section>
@@ -45,14 +47,26 @@
                 <div><a href="/" class="sidebar-separators-title"><i class="fa-solid fa-music"></i>Suas Playlists</a></div>
                 <ul id="sidebar-items">
                     <li id="newPlaylist" class="sidebar-item">
-                        <a href="/playlist"><i class="fa-regular fa-square-plus"></i>Nova Playlist</a>
+                        <a href="/playlist">
+                            <figure><i class="fa-regular fa-square-plus"></i></figure>
+                            Nova Playlist
+                        </a>
                     </li>
                     <li id="favorites" class="sidebar-item">
-                        <a href="/playlist"><i class="fa-solid fa-heart"></i>Favoritos</a>
+                        <a href="/">
+                            <figure><i class="fa-solid fa-heart"></i></figure>
+                            Favoritos
+                        </a>
                     </li>
                     <% playlists.forEach( item => {%>
                         <li id="<%= item.id %>" class="sidebar-item">
-                           <a href="/"> <%= item.playlist.name %> </a> 
+                           <a href="/"> 
+                                <figure>
+                                    <% console.log(item.playlist.src) %>
+                                    <img src="<%= item.playlist.src %>">
+                                </figure>
+                                <%= item.playlist.name %>
+                            </a> 
                         </li>
                     <% }) %>
                 </ul>
