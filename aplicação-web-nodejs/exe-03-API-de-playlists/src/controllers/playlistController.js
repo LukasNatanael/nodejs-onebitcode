@@ -2,10 +2,16 @@ const MusicModel    = require('../models/musicModel')
 const PlaylistModel = require('../models/playlistModel')
 const Playlists     = require('../models/playlists')
 
+const songs = require('../songs-copy')
+
 const playlists = new Playlists()
 
-const Academia = new PlaylistModel('Academia', 'Hip Hop')
-const Biscodazzo = new PlaylistModel('Biscodazz0_', ['Hip Hop', 'Pop', 'Funk'])
+const Academia = new PlaylistModel(
+    'Academia',
+    'Hip Hop',
+)
+
+const Biscodazzo = new PlaylistModel('Biscodazz0_', ['Hip Hop', 'Pop', 'Funk'], 'imgs/biscodazz0.png')
 const GameMusic = new PlaylistModel('Game Music', 'Eletrônica')
 const AnimationsMusic = new PlaylistModel('Animations Music', ['Pop', 'TikTok'])
 
@@ -15,6 +21,10 @@ playlists.addNewPlaylist( GameMusic )
 playlists.addNewPlaylist( AnimationsMusic )
 class PlaylistController {
    
+    teste(req, res) {
+        res.render('teste', { songs: songs })
+    }
+    
     show(req, res) {
 
         const allPlaylists =  playlists.getAllPlaylists()
