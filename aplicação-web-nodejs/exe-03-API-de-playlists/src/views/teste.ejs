@@ -16,7 +16,7 @@
                 <% item.musics.forEach( music => {%>
                     <li>
                         <img src="<%= music.src %>" alt=""></img>
-                        <strong><%= music.name %></strong>
+                        <a href="<%= music.src %>"><strong><%= music.name %></strong></a>
                     </li>
                 <% }) %>
             </ul>
