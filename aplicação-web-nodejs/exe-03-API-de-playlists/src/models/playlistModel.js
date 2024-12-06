@@ -5,7 +5,7 @@ class PlaylistModel {
     #src
     #tags = []
     #musics = []
-    constructor( name, tags, src='../assets/images/playlist_capes/playlist.png' ) {
+    constructor( name, tags, src='imgs/default-music-icon.svg' ) {
         if ( !name || !tags ) {
             return console.log('Dados insuficientes para cadastro!')
         }
