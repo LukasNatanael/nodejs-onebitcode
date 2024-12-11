@@ -57,6 +57,36 @@ class PlaylistController {
 
         res.json({message: 'Playlist removida!', id: id})
     }
+
+    newMusic(req, res) {
+        res.render('newMusic')
+    }
+
+    saveMusic(req, res) {
+        const { imgLink, musicName, artist } = req.body
+        res.render('savedMusic', { imgLink: imgLink, musicName: musicName, artist: artist })
+
+    }
+
+    newArtist(req, res) {
+        res.render('newArtist')
+    }
+
+    saveArtist(req, res) {
+        const { imgLink, artist } = req.body
+
+        const data = {
+            artist: artist,
+            artist_image: imgLink,
+            musics: []
+        }
+        songs.push(data)
+
+        console.log( songs )
+
+        res.render('savedArtist', { imgLink: imgLink, artist: artist })
+
+    }
 }
 
 module.exports = PlaylistController
