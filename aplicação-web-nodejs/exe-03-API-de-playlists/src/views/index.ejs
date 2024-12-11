@@ -62,10 +62,16 @@
                     </li>
                     <% playlists.forEach( item => {%>
                         <li id="<%= item.id %>" class="sidebar-item">
-                           <a href="/"> 
-                                <figure>
-                                    <img src="<%= item.playlist.src %>">
-                                </figure>
+                            <a href="/"> 
+                                <% if (item.playlist.src === '') {%>
+                                    <figure>
+                                        <i class="fa-solid fa-music"></i>
+                                    </figure>
+                                <% } else {%>
+                                        <figure>
+                                            <img src="<%= item.playlist.src %>">
+                                        </figure>
+                                <% }%>
                                 <%= item.playlist.name %>
                             </a> 
                         </li>
@@ -81,7 +87,12 @@
                     </label>
                     <input type="text" name="" id="search-input" placeholder="O que deseja ouvir hoje ?">
                 </span>
-                <div id="musics-search"></div>
+                <div id="musics-search" class="sidebar-item">
+                    <a href="/playlist" >
+                        <figure><i class="fa-solid fa-music"></i></figure>
+                        Nova Música
+                    </a>
+                </div>
             </section>
         </section>
         
@@ -97,7 +108,7 @@
             <div id="playing-now-box">
                 <figure id="playing-now-image">
                     <!-- <img src="" alt="playing-now-image"> -->
-                    <!-- <i class="fa-solid fa-music"></i> -->
+                    <i class="fa-solid fa-music"></i>
                 </figure>
 
                 <div class="music-info">
