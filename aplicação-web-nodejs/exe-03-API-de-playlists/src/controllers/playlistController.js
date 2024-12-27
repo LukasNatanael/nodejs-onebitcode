@@ -1,92 +1,64 @@
-const MusicModel    = require('../models/musicModel')
-const PlaylistModel = require('../models/playlistModel')
-const Playlists     = require('../models/playlists')
+const Playlist     = require('../models/playlists')
+const playlists = new Playlist('Minhas Playlists')
 
-const songs = require('../songs-copy')
+const musics = [
+    {
+        name:   'Musica 1',
+        artist: 'Artista 1',
+        album:  'Album 1',
+    },
+    {
+        name:   'Musica 2',
+        artist: 'Artista 2',
+        album:  'Album 2',
+    },
+]
 
-const playlists = new Playlists()
 
-const Academia = new PlaylistModel(
-    'Academia',
-    'Hip Hop',
-)
 
-const Biscodazzo = new PlaylistModel('Biscodazz0_', ['Hip Hop', 'Pop', 'Funk'], 'imgs/biscodazz0.png')
-const GameMusic = new PlaylistModel('Game Music', 'Eletrônica')
-const AnimationsMusic = new PlaylistModel('Animations Music', ['Pop', 'TikTok'])
+console.clear()
+const academia = new Playlist( 'Academia', [ 'rock', 'funk', 'rap' ] )
+academia.addMusic( musics )
 
-playlists.addNewPlaylist( Academia )
-playlists.addNewPlaylist( Biscodazzo )
-playlists.addNewPlaylist( GameMusic )
-playlists.addNewPlaylist( AnimationsMusic )
-class PlaylistController {
-   
-    teste(req, res) {
-        res.render('teste', { songs: songs })
-    }
-    
-    show(req, res) {
+playlists.addPlaylist(academia)
 
-        const allPlaylists =  playlists.getAllPlaylists()
-        res.render('index', { playlists: allPlaylists })
-    }
-    
-    createPlaylist(req, res) {
-        res.render('createPlaylist')
-    }
+console.log(playlists)
 
-    showAllPlaylists(req, res) {
-        res.render('allPlaylists', {playlists: playlists})
-    }
+module.exports = {
+    // GET /
+    show( req, res ) {
+        res.json({ allPlaylists: playlists.all })
+    },
 
-    savePlaylist(req, res) {
-        // const { name, tags } = req.body
-        const { name, tags } = req.params
-        const newPlaylist = new PlaylistModel(name, tags)
-
-        playlists.addNewPlaylist( newPlaylist )
-
-        // res.json({message: 'Playlist criada!', name: newPlaylist.name, tags: newPlaylist.tags })
-    }
-    deletePlaylist(req, res) {
+    // GET /playlist/:id
+    getPlaylist(req, res) {
         const { id } = req.params
+        const currentPlaylist = playlists.getPlaylistByID(id)
+        res.json({ playlist: currentPlaylist })
+    },
+
+    // GET /playlist/:id/musics
+    getMusics(req, res) {
+        const { id } = req.params
+        const currentPlaylist = playlists.getPlaylistByID(id)
+        res.json({ musics: currentPlaylist.musics })
+    },
+
+    // GET /playlist/:id/musics/:musicID
+    getMusic(req, res) {
+        const { id, musicID } = req.params
+        const currentPlaylist = playlists.getPlaylistByID(id)
+        const music = currentPlaylist.getMusicByID(musicID)
         
-        // playlists = playlists.forEach( playlist => playlist.id != id )
+        res.json({ music: music })
+    },
+    
+    // POST /playlist/:id
+    newPlaylist(req, res) {
+        const { name, tags } = req.body
+        const newPlaylist = new Playlist(name, tags)
+        playlists.addPlaylist( newPlaylist )
 
-        playlists.removePlaylist(id)
-
-        res.json({message: 'Playlist removida!', id: id})
-    }
-
-    newMusic(req, res) {
-        res.render('newMusic')
-    }
-
-    saveMusic(req, res) {
-        const { imgLink, musicName, artist } = req.body
-        res.render('savedMusic', { imgLink: imgLink, musicName: musicName, artist: artist })
-
-    }
-
-    newArtist(req, res) {
-        res.render('newArtist')
-    }
-
-    saveArtist(req, res) {
-        const { imgLink, artist } = req.body
-
-        const data = {
-            artist: artist,
-            artist_image: imgLink,
-            musics: []
-        }
-        songs.push(data)
-
-        console.log( songs )
-
-        res.render('savedArtist', { imgLink: imgLink, artist: artist })
-
+        res.json({ playlist: newPlaylist })
     }
 }
-
-module.exports = PlaylistController

@@ -1,26 +1,80 @@
-class Playlists {
-    #playlists = []
-    constructor() {
+class Playlist {
+    #tags
+    #playlists
+    constructor( name='New Playlist', tags=[] ) {
+        this.id     = this.generateID()
+        this.name   = name
+        this.tags   = tags
+        this.musics = []
         this.#playlists = []
     }
 
-    addNewPlaylist(playlist) {
-        this.#playlists.push({id: String(Math.floor( Math.random() * 9999 )) , playlist: playlist})
+    generateID() {
+        return `${Math.floor(1000 + Math.random() * 9000)}`
+    }
+
+    addMusic( data ) {
+        if (!data) {
+            return 'Nenhuma música informada!'
+        }
+        data.forEach( music => music.id = this.generateID() )
+
+        this.musics.push(...data)
+    }
+
+    removeMusic(id) {
+        const musicToRemove = this.musics.filter( music => music.name === id )
+        this.musics = this.musics.filter( music => music.name != id )
+        
+        console.log(musicToRemove)
+    }
+    
+    getPlaylistByID(id) {
+        const playlist = this.#playlists.filter( playlist => playlist.id == id )
+        
+        if (!playlist) {
+            return 'Playlist não localizada!'
+        }
+
+        return playlist[0]
+    }
+
+    getMusicByID(id) {
+        const music = this.musics.filter( music => music.id == id )
+        
+        if (!music) {
+            return 'Musica não localizada!'
+        }
+
+        return music
+    }
+
+    addPlaylist( data ) {
+        if (!data) {
+            return 'Nenhuma playlist informada!'
+        }
+        
+        this.#playlists.push(data)
     }
 
     removePlaylist(id) {
-        this.#playlists = this.#playlists.filter( item => item.id != id )
+        this.#playlists = this.#playlists.filter( playlist => playlist.name != id )
     }
 
-    getAllPlaylists() {
-        return this.#playlists.length != 0 ? this.#playlists : []
+    get all() {
+        if (!this.#playlists) {
+            return 'Nenhuma música cadastrada!'
+        }
+        return this.#playlists
     }
 
-    getPlaylistbyID(id) {
-        return this.#playlists.filter( playlist => playlist.id === id )
+    get music() {
+        if (!this.musics) {
+            return 'Nenhuma música cadastrada!'
+        }
+        return this.musics
     }
 
 }
 
-
-module.exports = Playlists
+module.exports = Playlist
