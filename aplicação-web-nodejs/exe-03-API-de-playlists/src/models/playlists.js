@@ -1,5 +1,4 @@
 class Playlist {
-    #tags
     #playlists
     constructor( name='New Playlist', tags=[] ) {
         this.id     = this.generateID()
@@ -23,8 +22,8 @@ class Playlist {
     }
 
     removeMusic(id) {
-        const musicToRemove = this.musics.filter( music => music.name === id )
-        this.musics = this.musics.filter( music => music.name != id )
+        const musicToRemove = this.musics.filter( music => music.id === id )
+        this.musics = this.musics.filter( music => music.id != id )
         
         console.log(musicToRemove)
     }
@@ -46,7 +45,7 @@ class Playlist {
             return 'Musica não localizada!'
         }
 
-        return music
+        return music[0]
     }
 
     addPlaylist( data ) {
@@ -58,7 +57,7 @@ class Playlist {
     }
 
     removePlaylist(id) {
-        this.#playlists = this.#playlists.filter( playlist => playlist.name != id )
+        this.#playlists = this.#playlists.filter( playlist => playlist.id != id )
     }
 
     get all() {
