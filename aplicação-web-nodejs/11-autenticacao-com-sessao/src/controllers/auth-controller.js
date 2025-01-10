@@ -1,7 +1,4 @@
-const users = [
-    { username: 'Lukas', password: '123456' },
-    { username: 'Issac', password: '654321' },
-]
+const users = require("../models/users")
 
 module.exports = {
     // GET /
@@ -18,7 +15,8 @@ module.exports = {
 
         const newUser = {
             username,
-            password
+            password,
+            role: 'standard'
         }
 
         users.push( newUser )
