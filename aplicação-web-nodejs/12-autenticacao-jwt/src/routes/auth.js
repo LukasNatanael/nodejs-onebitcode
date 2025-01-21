@@ -24,6 +24,7 @@ authRouter.post('/register', (req, res) => {
 authRouter.post('/login', (req, res) => {
     const { username, password } = req.body
 
+
     const userExists = users.find( user => user.username === username  )
     if (!userExists || userExists.password !== password) {
         return res.status(401).json({ message: 'Invalid credentials' })
