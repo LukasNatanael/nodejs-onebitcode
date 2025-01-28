@@ -13,14 +13,15 @@ const findUserByName = (username) => {
 
     return user
 }
+
 const findUserByEmail = (email) => {
     const user = users.find( user => user.email === email )
     return user
 }
 
 // auth/login
-authRouter.get('/login', (req, res) => {
-    const { name, email, pass } = req.body
+authRouter.post('/login', (req, res) => {
+    const { email, pass } = req.body
 
     const user = findUserByEmail(email)
 
@@ -28,17 +29,17 @@ authRouter.get('/login', (req, res) => {
         return res.status(401).json({ message: 'Invalid credentials' })
     }
 
-    const payload = { name, email }
+    const payload = { name: user.name, email }
     const options = { expiresIn: '30m' }
 
     const token = jwt.sign( payload, secretPass, options )
 
     console.log( token )
-    res.json({ message: `Hello ${user.name}. Welcome to login page!`})
+    res.json({ token })
 })
 
 // auth/register
-authRouter.get('/register', (req, res) => {
+authRouter.post('/register', (req, res) => {
     const { name, email, pass } = req.body
 
     const user = findUserByEmail(email)
@@ -47,7 +48,7 @@ authRouter.get('/register', (req, res) => {
         res.status(401).json({ message: 'Invalid credentials' })
     }
 
-    const newUser = { name, email, pass }
+    const newUser = { name, email, pass, position: 'standard' }
     users.push( newUser )
 
     res.json({ message: `Hello ${name}! You have been registered successfully.`, userData: newUser})
