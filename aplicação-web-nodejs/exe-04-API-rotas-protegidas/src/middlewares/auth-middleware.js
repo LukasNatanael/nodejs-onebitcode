@@ -1,5 +1,5 @@
 const jwt   = require('jsonwebtoken')
-const users = require('../models/users')
+const { findUserByEmail } = require('../models/users')
 
 const secretPass = '908as7d9hanye1q239eyuq80dhias'
 
@@ -13,9 +13,14 @@ const authMiddleware = ( req, res, next ) => {
     const token = authHeader.split(' ')[1]
 
     try {
-        const decodedToken = jwt.verify( token, secretPass )
-        
-        const user = users.find( user => user.email === decodedToken.email )
+        const decodedToken = jwt.decode(token)
+
+        if (!decodedToken) {
+            return res.status(401).json({ message: 'Invalid token' })
+        }
+        const validToken = jwt.verify( token, secretPass )
+
+        const user = findUserByEmail(validToken.email)
         if (!user) {
             return res.status(401).json({ message: 'Invalid user' })
         }
