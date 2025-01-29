@@ -20,4 +20,9 @@ const users = [
 	}
 ]
 
-module.exports = users
+const findUserByEmail = (email) => {
+    const user = users.find( user => user.email === email )
+    return user
+}
+
+module.exports = { users, findUserByEmail}
