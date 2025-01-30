@@ -1,4 +1,4 @@
-const users = [
+let users = [
     {
         name:     'Lukas',
         email:    'lukas@gmail.com',
@@ -25,4 +25,10 @@ const findUserByEmail = (email) => {
     return user
 }
 
-module.exports = { users, findUserByEmail}
+const deleteUserByEmail = (email) => {
+    const  userToDelete = findUserByEmail(email)
+    users = users.filter( user => user.email !== userToDelete.email )
+    return users
+}
+
+module.exports = { users, findUserByEmail, deleteUserByEmail }
