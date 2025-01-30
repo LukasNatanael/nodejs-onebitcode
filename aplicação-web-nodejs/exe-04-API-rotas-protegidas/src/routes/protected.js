@@ -1,6 +1,6 @@
 const express = require('express')
 const authMiddleware = require('../middlewares/auth-middleware')
-const { users, findUserByEmail} = require('../models/users')
+let { users, findUserByEmail, deleteUserByEmail } = require('../models/users')
 
 const protectedRouter = express.Router()
 
@@ -24,7 +24,7 @@ protectedRouter.post( '/dashboard/admin', authMiddleware, (req, res) => {
         return res.status(401).json({ message: 'Essa é uma área exclusiva para adiministradores! Por favor, retorne a página dos usuários comuns.' })
     }
 
-    const { name, email, pass, position } = req.body
+    let { name, email, pass, position } = req.body
     let user = findUserByEmail(email)
 
     if (!user) {
@@ -33,6 +33,7 @@ protectedRouter.post( '/dashboard/admin', authMiddleware, (req, res) => {
             return res.status(401).json({ message: 'Invalid credentials' })
         }
         
+        position = !position ? 'standard': position
         const newUser = { name, email, pass, position }
         users.push( newUser )
 
@@ -40,7 +41,6 @@ protectedRouter.post( '/dashboard/admin', authMiddleware, (req, res) => {
 
     }
     
-    // criar validação para evitar a utilização do mesmo e-mail
     if (name) {
         user.name = name
     }
@@ -54,7 +54,28 @@ protectedRouter.post( '/dashboard/admin', authMiddleware, (req, res) => {
         user.position = position
     }
 
-    res.json({ message: `Olá ${autenticatedUser.name}, aqui você pode administrar todos os usuários. Criar novos, exclui-los e alterar o cargo de cada um.`, user })
+    res.json({ message: `Os dados de ${user.name} foram atualizados`, currentUser: user })
+
+})
+
+// DELETE -> auth/dashboard/admin/:user
+protectedRouter.delete( '/dashboard/admin/:user', authMiddleware, (req, res) => {
+    const autenticatedUser = req.authenticatedUser
+    
+    if (autenticatedUser.position !== 'admin') {
+        return res.status(401).json({ message: 'Essa é uma área exclusiva para adiministradores! Por favor, retorne a página dos usuários comuns.' })
+    }
+
+    const userToDeleteEmail = req.params.user
+    const user = findUserByEmail( userToDeleteEmail )
+    
+    if (!userToDeleteEmail || !user) {
+        return res.json({ message: 'Forneça o e-mail do usuário a ser deletado!' })
+    }
+    
+    users = deleteUserByEmail(userToDeleteEmail)
+
+    return res.json({ message: `${user.name} já não faz mais parte da lista de usuários!`, email: user.email })
 
 })
 
