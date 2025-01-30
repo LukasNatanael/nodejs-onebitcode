@@ -22,7 +22,6 @@ authRouter.post('/login', (req, res) => {
 
     const token = jwt.sign( payload, secretPass, options )
 
-    console.log( token )
     res.json({ token })
 })
 
