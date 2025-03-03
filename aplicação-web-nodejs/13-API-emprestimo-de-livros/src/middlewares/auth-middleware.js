@@ -19,7 +19,7 @@ class AuthMiddleware {
             
             // if(!user) return new HttpError( 404, 'User not found!' )
             if(!user) return res.status(404).json({ message: 'User not found!' })
-                req.authUser = user
+            req.authUser = user
             next()
         }
         catch (error) {
